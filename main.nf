@@ -1,5 +1,10 @@
 nextflow.enable.dsl = 2
 
+params.mhcquant_outdir = null
+params.outdir          = '.'
+params.glob            = '*.tsv'
+params.seq_type        = 'peptide'
+
 workflow {
 
     if (!params.mhcquant_outdir) {
