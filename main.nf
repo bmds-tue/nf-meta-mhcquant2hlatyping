@@ -19,5 +19,4 @@ workflow {
             newLine:  true,
             sort:     true,
         )
-        .view { f -> "Wrote ${f}" }
 }
