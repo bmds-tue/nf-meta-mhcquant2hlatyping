@@ -1,6 +1,6 @@
 # nf-meta-mhcquant2hlatyping
 
-Minimal Nextflow connector that converts an [nf-core/mhcquant](https://github.com/nf-core/mhcquant) results directory into a samplesheet consumable by [nf-core/hlatyping](https://github.com/nf-core/hlatyping) (`dev` branch, `--tools immunotype`).
+Minimal Nextflow connector that converts an [nf-core/mhcquant](https://github.com/nf-core/mhcquant) results directory into a samplesheet consumable by [nf-core/hlatyping](https://github.com/nf-core/hlatyping) (`--tools immunotype`).
 
 ## Usage
 
@@ -29,7 +29,6 @@ nextflow run https://github.com/bmds-tue/nf-meta-mhcquant2hlatyping \
 | `seq_type` | Value of `params.seq_type` (default `peptide`). |
 | `tsv` | Absolute path to the discovered TSV. |
 
-The output is shaped to match nf-core/hlatyping's `assets/schema_input.json` on the `dev` branch when `--tools immunotype` is used. hlatyping's `--peptide_col_name` defaults to `sequence`, which is the column mhcquant publishes — no further remapping is needed.
 
 ## Test
 
