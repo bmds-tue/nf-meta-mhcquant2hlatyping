@@ -1,0 +1,28 @@
+nextflow_pipeline {
+
+    name "Test connector emits hlatyping-shaped samplesheet"
+    script "main.nf"
+
+    test("globs TSVs and writes samplesheet.csv with correct header and rows") {
+
+        when {
+            params {
+                mhcquant_outdir = "${projectDir}/test/testdata"
+                outdir          = "${launchDir}/results"
+            }
+        }
+
+        then {
+            assert workflow.success
+            def out = path("${launchDir}/results/samplesheet.csv")
+            assert out.exists()
+
+            def lines = out.readLines().sort()
+            // header + 2 fixture rows
+            assert lines.size() == 3
+            assert lines.any { it == 'sample,seq_type,tsv' }
+            assert lines.any { it.startsWith('PBMC007_B,peptide,') && it.endsWith('PBMC007_B.tsv') }
+            assert lines.any { it.startsWith('PBMC009_A,peptide,') && it.endsWith('PBMC009_A.tsv') }
+        }
+    }
+}
