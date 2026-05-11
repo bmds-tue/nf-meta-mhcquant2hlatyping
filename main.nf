@@ -2,8 +2,6 @@ nextflow.enable.dsl = 2
 
 params.mhcquant_outdir = null
 params.outdir          = '.'
-params.glob            = '*.tsv'
-params.seq_type        = 'peptide'
 
 workflow {
 
@@ -12,10 +10,10 @@ workflow {
     }
 
     channel
-        .fromPath("${params.mhcquant_outdir}/${params.glob}", checkIfExists: true)
+        .fromPath("${params.mhcquant_outdir}/*.tsv", checkIfExists: true)
         .map { tsv ->
             def sample = tsv.baseName
-            "${sample},${params.seq_type},${tsv}"
+            "${sample},peptide,${tsv}"
         }
         .collectFile(
             name:     'samplesheet.csv',
