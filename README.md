@@ -16,8 +16,6 @@ nextflow run https://github.com/bmds-tue/nf-meta-mhcquant2hlatyping \
 |---|---|---|
 | `mhcquant_outdir` | (required) | Directory containing per-sample mhcquant `*.tsv` peptide tables. |
 | `outdir` | `.` | Where `samplesheet.csv` is written. |
-| `glob` | `*.tsv` | Glob applied inside `mhcquant_outdir`. Override if mhcquant publishes into a subdir. |
-| `seq_type` | `peptide` | Value emitted in the `seq_type` column. Required to be `peptide` for hlatyping immunotype. |
 
 ## Output
 
@@ -26,7 +24,7 @@ nextflow run https://github.com/bmds-tue/nf-meta-mhcquant2hlatyping \
 | Column | Source |
 |---|---|
 | `sample` | Filename stem of each TSV (e.g. `PBMC007_B.tsv` → `PBMC007_B`). Matches mhcquant's `${Sample}_${Condition}` naming. |
-| `seq_type` | Value of `params.seq_type` (default `peptide`). |
+| `seq_type` | Hardcoded to `peptide` (required by hlatyping `--tools immunotype`). |
 | `tsv` | Absolute path to the discovered TSV. |
 
 
